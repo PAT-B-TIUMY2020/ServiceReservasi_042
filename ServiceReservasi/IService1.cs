@@ -15,7 +15,7 @@ namespace ServiceReservasi
         string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelepon, int JumlahPemesanan, string IDLokasi); //Method //Proses input data.
 
         [OperationContract]
-        string editPemesanan(string IDPemesanan, string NamaCustomer);
+        string editPemesanan(string IDPemesanan, string NamaCustomer, string NoTelepon);
 
         [OperationContract]
         string deletePemesanan(string IDPemesanan);
@@ -28,6 +28,7 @@ namespace ServiceReservasi
 
         [OperationContract]
         List<Pemesanan> Pemesanan();
+        
 
         // TODO: Add your service operations here
     }
@@ -53,7 +54,7 @@ namespace ServiceReservasi
         [DataMember]
         public string DeskripsiFull { get; set; }
         [DataMember]
-        public Int32 Kuota { get; set; }
+        public int Kuota { get; set; }
     }
 
     public class Pemesanan
@@ -63,9 +64,11 @@ namespace ServiceReservasi
         [DataMember]
         public string NamaCustomer { get; set; }
         [DataMember]
-        public string JumlahPemesanan { get; set; }
+        public string NoTelepon { get; set; }
         [DataMember]
-        public string IDLokasi { get; set; }
+        public int JumlahPemesanan { get; set; }
+        [DataMember]
+        public string Lokasi { get; set; }
     }
 
 
