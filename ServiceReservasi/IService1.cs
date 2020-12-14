@@ -12,10 +12,10 @@ namespace ServiceReservasi
     public interface IService1
     {
         [OperationContract]
-        string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelepon, int JumlahPemesanan, string IDLokasi); //Method //Proses input data.
+        string pemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon, int JumlahPemesanan, string IDLokasi); //Method //Proses input data.
 
         [OperationContract]
-        string editPemesanan(string IDPemesanan, string NamaCustomer, string NoTelepon);
+        string editPemesanan(string IDPemesanan, string NamaCustomer, string NoTelpon);
 
         [OperationContract]
         string deletePemesanan(string IDPemesanan);
@@ -28,7 +28,18 @@ namespace ServiceReservasi
 
         [OperationContract]
         List<Pemesanan> Pemesanan();
-        
+
+        [OperationContract]
+        string Login(string username, string password);
+        [OperationContract]
+        string Register(string username, string password, string kategori);
+        [OperationContract]
+        string UpdateRegister(string username, string password, string kategori, int id);
+        [OperationContract]
+        string DeleteRegister(string username);
+        [OperationContract]
+        List<DataRegister> DataRegist();
+
 
         // TODO: Add your service operations here
     }
@@ -64,13 +75,25 @@ namespace ServiceReservasi
         [DataMember]
         public string NamaCustomer { get; set; }
         [DataMember]
-        public string NoTelepon { get; set; }
+        public string NoTelpon { get; set; }
         [DataMember]
         public int JumlahPemesanan { get; set; }
         [DataMember]
         public string Lokasi { get; set; }
     }
 
+    [DataContract]
+    public class DataRegister
+    {
+        [DataMember(Order = 1)]
+        public int id { get; set; }
+        [DataMember(Order = 2)]
+        public string username { get; set; }
+        [DataMember(Order = 3)]
+        public string password { get; set; }
+        [DataMember(Order = 4)]
+        public string kategori { get; set; }
+    }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     // You can add XSD files into the project. After building the project, you can directly use the data types defined there, with the namespace "ServiceReservasi.ContractType".
@@ -92,6 +115,6 @@ namespace ServiceReservasi
         {
             get { return stringValue; }
             set { stringValue = value; }
-        }
+        }      
     }
 }
